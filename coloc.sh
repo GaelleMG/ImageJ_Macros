@@ -1,0 +1,78 @@
+#!/bin/bash
+# Juan Ortiz
+
+#Check if coloc exists as a directory if not creat it
+if [ ! -d 'coloc' ]; then
+    mkdir coloc
+fi
+filename=$(basename "$PWD"_coloc_data.csv)
+# Move all files ending in coloc.txt into the directory coloc
+cp *LOG.txt coloc
+# Move into the directory coloc
+cd coloc
+echo "import csv
+from sys import argv
+my_file = argv[1]
+file_name = []
+file_name.append(my_file)
+my_list = []
+need_to_print = []
+allowed = ['0','1','2','3','4','5','6','7','8','9','.']
+
+try:
+    with open(my_file, 'rb') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            my_list.append(row)
+        f.close()
+    def numbers(num):
+        to_return = []
+        b = ''
+        a = num[0]
+        a = a.partition(' ')[0]
+        
+        if a.index('='):
+            r = a.index('=')
+            a = a[r+1:]
+        
+        for i in a:
+            if i in allowed:
+                to_return.append(i)
+        for i in range(len(to_return)):
+            b += to_return[i]
+        c = []
+        c.append(b)
+        return c
+    try:
+        with open('$filename', 'a') as csvfile:
+            spamwriter = csv.writer(csvfile)
+            one = numbers(my_list[5])
+            two = numbers(my_list[8])        
+            three = numbers(my_list[9]) 
+            four = numbers(my_list[12]) 
+            five = numbers(my_list[13]) 
+            six = numbers(my_list[17]) 
+            eight = numbers(my_list[29])
+            col = file_name + one + two + three + four + five + six + eight
+            spamwriter.writerow(col)
+            csvfile.close()
+    except ValueError:
+        print 'Already analysed!'
+except IOError:
+    print 'No file found'" > coloc.py
+
+# If the file data.txt already exists delete it
+if [ -f 'coloc.txt' ]; then
+    rm coloc.txt
+fi
+# Copy selected sorted by filename length into the file data.txt
+for p in `ls`;
+do
+    if [ ! $p == "coloc.py" ]; then
+        python coloc.py $p
+    fi
+done
+rm coloc.py
+mv $filename ../
+cd ..
+rm -r coloc
