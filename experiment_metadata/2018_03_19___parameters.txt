@@ -1,0 +1,13 @@
+//dapi
+setMinAndMax(-128, 128);
+call("ij.ImagePlus.setDefault16bitRange", 0);
+run("Apply LUT", "stack");
+//green
+setMinAndMax(-128, 128);
+call("ij.ImagePlus.setDefault16bitRange", 0);
+run("Apply LUT", "stack");
+//red
+setMinAndMax(-128, 128);
+call("ij.ImagePlus.setDefault16bitRange", 0);
+run("Apply LUT", "stack");
+//

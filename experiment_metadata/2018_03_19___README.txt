@@ -1,0 +1,14 @@
+2018_03_19___README
+
+Experiment Date: 	2018_03_19
+
+Experiment Path: 	/Users/gaellemuller-greven/Programming/ImageJ/data/test2/
+
+Number of fields:	3
+
+Confocal? (Y/N)		Y
+
+Experiment Keywords: 	Test, 3-Color, DAPI, LC3, Lamp2, 08-387
+
+Experiment Summary:	This is dummy data for macro testing.
+
