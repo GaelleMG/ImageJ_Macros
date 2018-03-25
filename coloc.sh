@@ -25,24 +25,24 @@ try:
         for row in reader:
             my_list.append(row)
         f.close()
-    def numbers(num):
+    def numbers(number):
         to_return = []
-        b = ''
-        a = num[0]
-        a = a.partition(' ')[0]
+        my_list = []
+        parameter = ''
+	first = number[0]
+	first = first.partition(' ')[0]
         
-        if a.index('='):
-            r = a.index('=')
-            a = a[r+1:]
+        if first.index('='):
+	    first_selection = first.index('=')
+	    first = first[first_selection+1:]
         
-        for i in a:
-            if i in allowed:
-                to_return.append(i)
-        for i in range(len(to_return)):
-            b += to_return[i]
-        c = []
-        c.append(b)
-        return c
+        for selected in first:
+            if selected in allowed:
+                to_return.append(selected)
+        for selected in range(len(to_return)):
+            parameter += to_return[selected]
+        my_list.append(parameter)
+        return my_list
     try:
         with open('$filename', 'a') as csvfile:
             spamwriter = csv.writer(csvfile)
