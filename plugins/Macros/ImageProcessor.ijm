@@ -28,9 +28,9 @@ if(lengthOf(folderNames) > 0) {
 }
 
 function mergeStacks(foldername) {
-	pathfileFields = setColors(selectedChannels);	
-	//pathfileFields = File.openDialog("Choose the file to open:");
-	filestringFields = File.openAsString(pathfileFields);
+	fieldNames = setColors(selectedChannels);
+	//fieldNames = File.openDialog("Choose the file to open:");
+	filestringFields = File.openAsString(fieldNames);
 	if(lengthOf(filestringFields) > 0) {
 		rows = split(filestringFields, "\n"); 
 		dapiFiles = newArray(rows.length);
