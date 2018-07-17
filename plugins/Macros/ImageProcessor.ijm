@@ -161,33 +161,7 @@ function saveFilename(string, foldername) {
 	}
 	//return 0;
 }
-/*
-function getRadioButtons() {
-	rows = 4;
-	columns = 1;
-	n = rows*columns;
-	labels = newArray(n);
-	defaults = newArray(n);
-	labels[0] = "405 " + BLUE;
-	defaults[0] = TRUE;
-	labels[1] = "488nm (" + GREEN +")";
-	defaults[1] = TRUE;
-	labels[2] = "568/594nm (" + RED +")";
-	defaults[2] = TRUE;
-	labels[3] = "633/647nm (" + FARRED +")";
-	Dialog.create("Color Selection");
-	Dialog.addCheckboxGroup(rows,columns,labels,defaults);
-	Dialog.show();
 
-	first = parseInt(Dialog.getCheckbox());
-	second = parseInt(Dialog.getCheckbox());
-	third = parseInt(Dialog.getCheckbox());
-	fourth = parseInt(Dialog.getCheckbox());
-	result = first + second + third + fourth;
-	result = toString(result) + "-Color";
-	return result;
-}
-*/
 function setColors(selectedChannels) {
 	if(selectedChannels == "2-Color"){
 		print("2-Color is NOT yet implemented");
@@ -203,5 +177,3 @@ function setColors(selectedChannels) {
 		exit;
 	}
 }
-
-
