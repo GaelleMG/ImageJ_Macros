@@ -12,7 +12,7 @@ fieldname = "";
 showMessageWithCancel("Directory", "Select the DIRECTORY file:");
 filestringDirectory = runMacro("getPaths.ijm");
 
-selectedChannels = getRadioButtons();
+selectedChannels = runMacro("getChannelsRadioButtons.ijm");
 
 showMessageWithCancel("Directory", "Select the PARAMETER file:");
 paramPath = runMacro("getPath.ijm");
@@ -29,7 +29,6 @@ if(lengthOf(folderNames) > 0) {
 
 function mergeStacks(foldername) {
 	fieldNames = setColors(selectedChannels);
-	//fieldNames = File.openDialog("Choose the file to open:");
 	filestringFields = File.openAsString(fieldNames);
 	if(lengthOf(filestringFields) > 0) {
 		rows = split(filestringFields, "\n"); 
@@ -162,14 +161,8 @@ function saveFilename(string, foldername) {
 	}
 	//return 0;
 }
-
+/*
 function getRadioButtons() {
-	// store blue, green, and red filenames for each field in arrays
-	/*
-	colorOptions = newArray("2-Color", "3-Color", "4-Color");
-	Dialog.create("Color Channels");
-	Dialog.addRadioButtonGroup("Select Channel Number:", colorOptions, 1, 3, "3-Color");
-	*/
 	rows = 4;
 	columns = 1;
 	n = rows*columns;
@@ -192,10 +185,9 @@ function getRadioButtons() {
 	fourth = parseInt(Dialog.getCheckbox());
 	result = first + second + third + fourth;
 	result = toString(result) + "-Color";
-	//return Dialog.getRadioButton;
 	return result;
 }
-
+*/
 function setColors(selectedChannels) {
 	if(selectedChannels == "2-Color"){
 		print("2-Color is NOT yet implemented");
