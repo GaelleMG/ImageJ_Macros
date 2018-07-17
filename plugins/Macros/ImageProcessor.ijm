@@ -9,13 +9,13 @@ mainFilename = "";
 fieldname = "";
 
 // User input
-showMessageWithCancel("Directory", "Select the directory file.");
-filestringDirectory = runMacro("getPath.ijm");
+showMessageWithCancel("Directory", "Select the DIRECTORY file:");
+filestringDirectory = runMacro("getPaths.ijm");
 
 selectedChannels = getRadioButtons();
 
-showMessageWithCancel("Directory", "Select the parameter file.");
-paramPath = File.openDialog("Choose the parameter file:");
+showMessageWithCancel("Directory", "Select the PARAMETER file:");
+paramPath = runMacro("getPath.ijm");
 
 folderNames = split(filestringDirectory, "\n");
 if(lengthOf(folderNames) > 0) {
