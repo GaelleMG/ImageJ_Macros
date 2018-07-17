@@ -57,8 +57,8 @@ function mergeStacks(foldername) {
 					"_24-26_",
 					"_27-29_");
 
-	list = getFileList(foldername);
-	Array.sort(list);
+	//list = getFileList(foldername);
+	//Array.sort(list);
 	if(dapiFiles.length > 0) {		
 		for(file = 0; file < dapiFiles.length; file++) {
 			compositeFilename = getFilename(dapiFiles[file], foldername);
