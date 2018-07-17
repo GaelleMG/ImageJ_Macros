@@ -57,8 +57,6 @@ function mergeStacks(foldername) {
 					"_24-26_",
 					"_27-29_");
 
-	//list = getFileList(foldername);
-	//Array.sort(list);
 	if(dapiFiles.length > 0) {		
 		for(file = 0; file < dapiFiles.length; file++) {
 			compositeFilename = getFilename(dapiFiles[file], foldername);
@@ -145,21 +143,12 @@ function saveFilename(string, foldername) {
 	}
 	
 	if(isUnique == 1) {
-		//print("THE FILE IS UNIQUE, SO GO AHEAD AND SAVE IT !");
-		//print(string);
 		saveAs("Tif", foldername+string);
 		savedFile = "File Saved ! ! !";
 	} else if(isUnique == 0) {
-		//print( "THE FILE ALREADY EXISTS !");
-		//print(string);
-		//for ( var j = num ; j < duplicates.length ; j++ ) {
-			//tempFilename = string+duplicates[j];
-			//saveFilename(tempFilename, j++);
-		//}
 		saveAs("Tif", foldername+string+duplicates[0]);
 		savedFile = "File Saved ! ! !";
 	}
-	//return 0;
 }
 
 function setColors(selectedChannels) {
