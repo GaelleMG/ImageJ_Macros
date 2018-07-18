@@ -6,7 +6,6 @@ TRUE = true;
 zImageNumber = 0;
 compositeFilename = "";
 mainFilename = "";
-fieldname = "";
 
 // User input
 showMessageWithCancel("Directory", "Select the DIRECTORY file:");
