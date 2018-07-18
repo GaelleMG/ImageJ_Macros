@@ -13,21 +13,9 @@ showMessageWithCancel("Directory", "Select the DIRECTORY file:");
 filestringDirectory = runMacro("getPaths.ijm");
 
 filestringFields = File.openAsString(setColors(runMacro("getChannelsRadioButtons.ijm")));
-if(lengthOf(filestringFields) > 0) {
-	rows = split(filestringFields, "\n"); 
-	dapiFiles = newArray(rows.length);
-	greenFiles = newArray(rows.length);
-	redFiles = newArray(rows.length);
-	for(row = 0; row < rows.length; row++){
-		columns = split(rows[row], "\t");
-		dapiFiles[row] = columns[0]; 
-		greenFiles[row] = columns[1];
-		redFiles[row] = columns[2];
-	}
-} else {
-	print("The fieldnames do not exist.");
-	exit;
-}
+dapiFiles = getColorFieldArray(filestringFields, BLUE);
+greenFiles = getColorFieldArray(filestringFields, GREEN);
+redFiles = getColorFieldArray(filestringFields, RED);
 
 showMessageWithCancel("Directory", "Select the PARAMETER file:");
 paramPath = runMacro("getPath.ijm");
@@ -94,6 +82,34 @@ function mergeStacks(foldername) {
 		print("dapiFiles is empty");
 		exit;
 	}	
+}
+
+function getColorFieldArray(filestringFields, color) {
+	if(lengthOf(filestringFields) > 0) {
+		rows = split(filestringFields, "\n"); 
+		dapiFiles = newArray(rows.length);
+		greenFiles = newArray(rows.length);
+		redFiles = newArray(rows.length);
+		for(row = 0; row < rows.length; row++){
+			columns = split(rows[row], "\t");
+			dapiFiles[row] = columns[0]; 
+			greenFiles[row] = columns[1];
+			redFiles[row] = columns[2];
+		}
+	} else {
+		print("The fieldnames do not exist.");
+		exit;
+	}
+	
+	if(color == BLUE) {
+		return dapiFiles;
+	}
+	if(color == GREEN) {
+		return greenFiles;
+	}
+	if(color == RED) {
+		return redFiles;
+	}
 }
 
 function applyParameters(paramPath, color) {
