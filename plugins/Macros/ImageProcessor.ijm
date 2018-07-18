@@ -2,10 +2,13 @@ BLUE = "blue";
 GREEN = "green";
 RED = "red";
 FARRED = "far-red"
+blue = green = red = farred = false;
 TRUE = true;
+FALSE = false;
 zImageNumber = 0;
 compositeFilename = "";
 mainFilename = "";
+
 
 // User input
 showMessageWithCancel("Directory", "Select the DIRECTORY file:");
@@ -15,6 +18,7 @@ filestringFields = File.openAsString(setColors(runMacro("getChannelsRadioButtons
 dapiFiles = getColorFieldArray(filestringFields, BLUE);
 greenFiles = getColorFieldArray(filestringFields, GREEN);
 redFiles = getColorFieldArray(filestringFields, RED);
+compositeFilenames = getCompositeFilenames(blue, green, red, farred);
 
 showMessageWithCancel("Directory", "Select the PARAMETER file:");
 paramPath = runMacro("getPath.ijm");
@@ -30,17 +34,6 @@ if(lengthOf(folderNames) > 0) {
 }
 
 function mergeStacks(foldername) {
-	compositeFiles3color = newArray("_00-02_",
-					"_03-05_",
-					"_06-08_",
-					"_09-11_",
-					"_12-14_",
-					"_15-17_",
-					"_18-20_",
-					"_21-23_",
-					"_24-26_",
-					"_27-29_");
-
 	if(dapiFiles.length > 0) {		
 		for(file = 0; file < dapiFiles.length; file++) {
 			compositeFilename = getFilename(dapiFiles[file], foldername);
@@ -58,7 +51,7 @@ function mergeStacks(foldername) {
 				applyParameters(paramPath, RED);
 
 				finalFilename3color = substring(compositeFilename, 0,
-					lengthOf(compositeFilename)-9) + compositeFiles3color[file] + "Composite_3color";
+					lengthOf(compositeFilename)-9) + compositeFilenames[file] + "Composite_3color";
 
 				// merge stacks and save as merged stack as TIF files
 				run("Merge Channels...", "c1="+c1Name+" c2="+c2Name+" c3="+c3Name+" create keep");
@@ -101,14 +94,32 @@ function getColorFieldArray(filestringFields, color) {
 	}
 	
 	if(color == BLUE) {
+		blue = TRUE;
 		return dapiFiles;
 	}
 	if(color == GREEN) {
+		green = TRUE;
 		return greenFiles;
 	}
 	if(color == RED) {
+		red = TRUE;
 		return redFiles;
 	}
+}
+function getCompositeFilenames(BLUE, GREEN, RED, FARRED) {
+	if(BLUE == true && GREEN == TRUE && RED == TRUE) {
+		compositeFilenames = newArray("_00-02_",
+						"_03-05_",
+						"_06-08_",
+						"_09-11_",
+						"_12-14_",
+						"_15-17_",
+						"_18-20_",
+						"_21-23_",
+						"_24-26_",
+						"_27-29_");
+	}
+	return compositeFilenames;
 }
 
 function applyParameters(paramPath, color) {
