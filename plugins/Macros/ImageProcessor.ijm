@@ -12,7 +12,22 @@ fieldname = "";
 showMessageWithCancel("Directory", "Select the DIRECTORY file:");
 filestringDirectory = runMacro("getPaths.ijm");
 
-selectedChannels = runMacro("getChannelsRadioButtons.ijm");
+filestringFields = File.openAsString(setColors(runMacro("getChannelsRadioButtons.ijm")));
+if(lengthOf(filestringFields) > 0) {
+	rows = split(filestringFields, "\n"); 
+	dapiFiles = newArray(rows.length);
+	greenFiles = newArray(rows.length);
+	redFiles = newArray(rows.length);
+	for(row = 0; row < rows.length; row++){
+		columns = split(rows[row], "\t");
+		dapiFiles[row] = columns[0]; 
+		greenFiles[row] = columns[1];
+		redFiles[row] = columns[2];
+	}
+} else {
+	print("The fieldnames do not exist.");
+	exit;
+}
 
 showMessageWithCancel("Directory", "Select the PARAMETER file:");
 paramPath = runMacro("getPath.ijm");
@@ -28,24 +43,6 @@ if(lengthOf(folderNames) > 0) {
 }
 
 function mergeStacks(foldername) {
-	fieldNames = setColors(selectedChannels);
-	filestringFields = File.openAsString(fieldNames);
-	if(lengthOf(filestringFields) > 0) {
-		rows = split(filestringFields, "\n"); 
-		dapiFiles = newArray(rows.length);
-		greenFiles = newArray(rows.length);
-		redFiles = newArray(rows.length);
-		for(row = 0; row < rows.length; row++){
-			columns = split(rows[row], "\t");
-			dapiFiles[row] = columns[0]; 
-			greenFiles[row] = columns[1];
-			redFiles[row] = columns[2];
-		}
-	} else {
-		print("The filestringFields is empty.");
-		exit;
-	}
-
 	compositeFiles3color = newArray("_00-02_",
 					"_03-05_",
 					"_06-08_",
