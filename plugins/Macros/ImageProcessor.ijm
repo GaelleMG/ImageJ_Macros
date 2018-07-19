@@ -176,16 +176,14 @@ function saveFilename(string, foldername) {
 
 function setColors(selectedChannels) {
 	if(selectedChannels == "2-Color"){
-		print("2-Color is NOT yet implemented");
-		exit;
+		return "/Users/gaellemuller-greven/Programming/ImageJ_Macros/plugins/filedata/confocal_2_color_fieldnames.txt";
 	}
 
 	if(selectedChannels == "3-Color"){
-		return "/Users/gaellemuller-greven/Programming/ImageJ/plugins/filedata/confocal_3_sample_fieldnames.txt";
+		return "/Users/gaellemuller-greven/Programming/ImageJ_Macros/plugins/filedata/confocal_3_color_fieldnames.txt";
 	}
 
 	if(selectedChannels == "4-Color"){
-		print("4-Color is NOT yet implemented");
-		exit;
+		return "/Users/gaellemuller-greven/Programming/ImageJ_Macros/plugins/filedata/confocal_4_color_fieldnames.txt";
 	}
 }
