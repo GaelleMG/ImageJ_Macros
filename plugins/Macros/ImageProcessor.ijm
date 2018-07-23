@@ -23,6 +23,8 @@ compositeFilenames = getCompositeFilenames(blue, green, red, farred);
 showMessageWithCancel("Directory", "Select the PARAMETER file:");
 paramPath = runMacro("getPath.ijm");
 
+setBatchMode(TRUE);
+
 folderNames = split(filestringDirectory, "\n");
 if(lengthOf(folderNames) > 0) {
 	for(folderName = 0; folderName < folderNames.length; folderName++) {
@@ -51,7 +53,7 @@ function mergeStacks(foldername) {
 				applyParameters(paramPath, RED);
 
 				finalFilename3color = substring(compositeFilename, 0,
-					lengthOf(compositeFilename)-9) + compositeFilenames[file] + "Composite_3color";
+					lengthOf(compositeFilename)-9) + compositeFilenames[file] + "composite_3color";
 
 				// merge stacks and save as merged stack as TIF files
 				run("Merge Channels...", "c1="+c1Name+" c2="+c2Name+" c3="+c3Name+" create keep");
@@ -60,7 +62,7 @@ function mergeStacks(foldername) {
 
 				// create RGB version of flatten image above and save as TIF file
 				run("RGB Color", "slices keep");
-				rgbFilename3color = finalFilename3color+"_(RGB)";
+				rgbFilename3color = finalFilename3color+"_rgb";
 				saveFilename(rgbFilename3color, foldername);
 				close();
 
