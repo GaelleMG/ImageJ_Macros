@@ -2,7 +2,7 @@ BLUE = "blue";
 GREEN = "green";
 RED = "red";
 FARRED = "far-red"
-blue = green = red = farred = false;
+var blue = green = red = farred = false;
 TRUE = true;
 FALSE = false;
 zImageNumber = 0;
@@ -106,8 +106,9 @@ function getColorFieldArray(filestringFields, color) {
 		return redFiles;
 	}
 }
-function getCompositeFilenames(BLUE, GREEN, RED, FARRED) {
-	if(BLUE == true && GREEN == TRUE && RED == TRUE) {
+
+function getCompositeFilenames(blue, green, red, farred) {
+	if(blue == TRUE && green == TRUE && red == TRUE) {
 		compositeFilenames = newArray("_00-02_",
 						"_03-05_",
 						"_06-08_",
@@ -153,7 +154,6 @@ function getFilename(string, foldername) {
 function saveFilename(string, foldername) {
 	list = getFileList(foldername);
 	Array.sort(list);
-	duplicates = newArray("_01", "_02", "_03", "_04", "_05");
 	isUnique = 0;
 
 	for(file = 0; file < list.length; file++) {
@@ -167,10 +167,9 @@ function saveFilename(string, foldername) {
 	
 	if(isUnique == 1) {
 		saveAs("Tif", foldername+string);
-		savedFile = "File Saved ! ! !";
 	} else if(isUnique == 0) {
-		saveAs("Tif", foldername+string+duplicates[0]);
-		savedFile = "File Saved ! ! !";
+		print("The filename already exists.  File not saved.");
+		exit;
 	}
 }
 
