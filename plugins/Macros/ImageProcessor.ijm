@@ -65,6 +65,17 @@ function mergeStacks(foldername) {
 				close();
 
 				closeWindow(finalFilename3color + ".tif");
+				
+				// Colocalization Analysis using the JACoP plugin
+				selectWindow(c2Name);
+				run("8-bit");
+				selectWindow(c1Name);
+				run("8-bit");
+				runMacro("coloc_jacop.ijm", c1Name + " " + c2Name + " " + finalFilename3color + " " + foldername);			
+	
+				// Area analysis for green, red, and min(green & red) channels
+				runMacro("areaStacks.ijm", c1Name + " " + c2Name + " " + finalFilename3color + " " + foldername + " " + zImageNumber);
+
 				closeWindow(c1Name);
 				closeWindow(c2Name);
 				closeWindow(c3Name);
