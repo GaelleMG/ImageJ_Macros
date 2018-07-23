@@ -174,15 +174,16 @@ function saveFilename(string, foldername) {
 }
 
 function setColors(selectedChannels) {
+	macroPath = getDirectory("plugins");
 	if(selectedChannels == "2-Color"){
-		return "/Users/gaellemuller-greven/Programming/ImageJ_Macros/plugins/filedata/confocal_2_color_fieldnames.txt";
+		return macroPath + "filedata/confocal_2_color_fieldnames.txt";
 	}
 
 	if(selectedChannels == "3-Color"){
-		return "/Users/gaellemuller-greven/Programming/ImageJ_Macros/plugins/filedata/confocal_3_color_fieldnames.txt";
+		return macroPath + "filedata/confocal_3_color_fieldnames.txt";
 	}
 
 	if(selectedChannels == "4-Color"){
-		return "/Users/gaellemuller-greven/Programming/ImageJ_Macros/plugins/filedata/confocal_4_color_fieldnames.txt";
+		return macroPath + "filedata/confocal_4_color_fieldnames.txt";
 	}
 }
