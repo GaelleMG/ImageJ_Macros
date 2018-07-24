@@ -187,16 +187,16 @@ function saveFilename(string, foldername) {
 }
 
 function setColors(selectedChannels) {
-	macroPath = getDirectory("plugins");
+	macroPath = getDirectory("plugins") + "filedata/";
 	if(selectedChannels == "2-Color"){
-		return macroPath + "filedata/confocal_2_color_fieldnames.txt";
+		return macroPath + "confocal_2_color_fieldnames.txt";
 	}
 
 	if(selectedChannels == "3-Color"){
-		return macroPath + "filedata/confocal_3_color_fieldnames.txt";
+		return macroPath + "confocal_3_color_fieldnames.txt";
 	}
 
 	if(selectedChannels == "4-Color"){
-		return macroPath + "filedata/confocal_4_color_fieldnames.txt";
+		return macroPath + "confocal_4_color_fieldnames.txt";
 	}
 }
