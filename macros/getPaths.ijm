@@ -1,4 +1,3 @@
-args = getArgument();
 return toString(getPath());
 exit;
 

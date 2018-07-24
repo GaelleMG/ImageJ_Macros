@@ -1,6 +1,5 @@
 TRUE = true;
 
-arg = getArgument();
 return toString(getRadioButtons());
 exit;
 

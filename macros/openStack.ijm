@@ -4,28 +4,28 @@ RED = "Red";
 name = "";
 
 
-values = getArgument();
-return toString(openStack(values));
+args = getArgument();
+return toString(openStack(args));
 exit;
 
-function openStack(values) {
+function openStack(args) {
 
 	field = "";
 	path = "";
 	imageColor = "";
 	zImageNumber = "";
 
-	if (lengthOf(values)==0) {
+	if (lengthOf(args)==0) {
 		return 0;
 	}
 
-	a = split(values, " ");
-	for ( i = 0; i < a.length; i++) {
-		field = a[0];
-		path = a[1];
-		imageColor = a[2];
-		if (a.length == 4) {
-			zImageNumber = a[3];
+	arg = split(args, " ");
+	for ( i = 0; i < arg.length; i++) {
+		field = arg[0];
+		path = arg[1];
+		imageColor = arg[2];
+		if (arg.length == 4) {
+			zImageNumber = arg[3];
 		}
 	}
 
@@ -49,7 +49,7 @@ function openStack(values) {
 function openDAPIStack (string, foldername) {
 	list = getFileList(foldername);
 	Array.sort(list);
-	for ( var i = 0 ; i < list.length ; i++ ) {
+	for ( i = 0 ; i < list.length ; i++ ) {
 		if ( ((endsWith(list[i],".tif")) && (indexOf(list[i],string)>=0) && (indexOf(list[i],"Composite")<0)) ) {
 			open(foldername+list[i]);
 		}

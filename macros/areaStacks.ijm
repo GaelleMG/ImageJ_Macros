@@ -1,25 +1,25 @@
-values = getArgument();
-return toString(area(values));
+args = getArgument();
+area(args);
 exit;
 
-function area(values) {
+function area(args) {
 
 	c1Name = "";
 	c2Name = "";
 	finalFilename = "";
 	foldername = "";
 
-	if (lengthOf(values)==0) {
+	if (lengthOf(args)==0) {
 		return 0;
 	}
 
-	a = split(values, " ");
-	for ( i = 0; i < a.length; i++) {
-		c1Name = a[0];
-		c2Name = a[1];
-		finalFilename = a[2];
-		foldername = a[3];
-		zImageNumber = a[4];
+	arg = split(args, " ");
+	for ( i = 0; i < arg.length; i++) {
+		c1Name = arg[0];
+		c2Name = arg[1];
+		finalFilename = arg[2];
+		foldername = arg[3];
+		zImageNumber = arg[4];
 	}
 
 	// create a MAX Z-projection of the green channel stack
@@ -67,4 +67,12 @@ function area(values) {
 	    selectWindow("Results");
             run("Close");
 
+	selectWindow("MAX_"+c1Name);
+	run("Close");
+	
+	selectWindow("MAX_"+c2Name);
+	run("Close");
 
+	selectWindow("Result of MAX_"+c1Name);
+	run("Close");
+}

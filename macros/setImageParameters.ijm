@@ -1,17 +1,17 @@
-values = getArgument();
-setImageParameters(values);
+args = getArgument();
+setImageParameters(args);
 exit;
 
-function setImageParameters (values) {
+function setImageParameters (args) {
 
-	if (lengthOf(values)==0) {
+	if (lengthOf(args)==0) {
 		return 0;
 	}
 
-	args = split(values, " ");
-	for ( i = 0; i < args.length; i++ ) {
-		path = args[0];
-		color = args[1];
+	arg = split(args, " ");
+	for ( i = 0; i < arg.length; i++ ) {
+		path = arg[0];
+		color = arg[1];
 	}
 
 	params = File.openAsString(path);
@@ -20,9 +20,7 @@ function setImageParameters (values) {
 	for ( i = 0 ; i < paramColor.length ; i++ ) {
 		if ( (paramColor[i] == "//dapi") && (color == "blue") ) {
 			i += 1;
-			//print("DAPI");
 			while( startsWith(paramColor[i], "//") != 1 ) {
-				//print(paramColor[i]);
 				eval(paramColor[i]);
 				i += 1;
 			}
@@ -30,9 +28,7 @@ function setImageParameters (values) {
 		
 		if ( (paramColor[i] == "//green") && (color == "green") ) {
 			i += 1;
-			//print("GREEN");
 			while( startsWith(paramColor[i], "//") != 1 ) {
-				//print(paramColor[i]);
 				eval(paramColor[i]);
 				i += 1;
 			}
@@ -40,9 +36,7 @@ function setImageParameters (values) {
 
 		if ( (paramColor[i] == "//red") && (color == "red") ) {
 			i += 1;
-			//print("RED");
 			while( startsWith(paramColor[i], "//") != 1 ) {
-				//print(paramColor[i]);
 				eval(paramColor[i]);
 				i += 1;
 			}
