@@ -7,7 +7,6 @@ TRUE = true;
 FALSE = false;
 zImageNumber = 0;
 compositeFilename = "";
-mainFilename = "";
 
 
 // User input
@@ -23,7 +22,7 @@ compositeFilenames = getCompositeFilenames(blue, green, red, farred);
 showMessageWithCancel("Directory", "Select the PARAMETER file:");
 paramPath = runMacro("getPath.ijm");
 
-setBatchMode(TRUE);
+setBatchMode(FALSE);
 
 folderNames = split(filestringDirectory, "\n");
 if(lengthOf(folderNames) > 0) {
@@ -69,15 +68,16 @@ function mergeStacks(foldername) {
 				closeWindow(finalFilename3color + ".tif");
 				
 				// Colocalization Analysis using the JACoP plugin
-				selectWindow(c2Name);
-				run("8-bit");
-				selectWindow(c1Name);
-				run("8-bit");
-				runMacro("coloc_jacop.ijm", c1Name + " " + c2Name + " " + finalFilename3color + " " + foldername);			
+				//selectWindow(c2Name);
+				//run("8-bit");
+				//selectWindow(c1Name);
+				//run("8-bit");
+				//runMacro("coloc_jacop.ijm", c1Name + " " + c2Name + " " + finalFilename3color + " " + foldername);			
 	
 				// Area analysis for green, red, and min(green & red) channels
-				runMacro("areaStacks.ijm", c1Name + " " + c2Name + " " + finalFilename3color + " " + foldername + " " + zImageNumber);
-
+				//runMacro("areaStacks.ijm", c1Name + " " + c2Name + " " + finalFilename3color + " " + foldername + " " + zImageNumber);
+				analyzeArea(c1Name, c2Name, finalFilename3color, foldername, zImageNumber);
+				
 				closeWindow(c1Name);
 				closeWindow(c2Name);
 				closeWindow(c3Name);
@@ -151,6 +151,7 @@ function closeWindow(windowName) {
 }
 
 function getFilename(string, foldername) {
+	mainFilename = "";
 	list = getFileList(foldername);
 	Array.sort(list);
 
@@ -199,4 +200,8 @@ function setColors(selectedChannels) {
 	if(selectedChannels == "4-Color"){
 		return macroPath + "confocal_4_color_fieldnames.txt";
 	}
+}
+
+function analyzeArea (c1Name, c2Name, finalFilename3Color, foldername, zImageNumber) {
+	runMacro("areaStacks.ijm", c1Name + " " + c2Name + " " + finalFilename3color + " " + foldername + " " + zImageNumber);
 }
