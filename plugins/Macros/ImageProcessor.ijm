@@ -27,14 +27,14 @@ setBatchMode(FALSE);
 folderNames = split(filestringDirectory, "\n");
 if(lengthOf(folderNames) > 0) {
 	for(folderName = 0; folderName < folderNames.length; folderName++) {
-		mergeStacks(folderNames[folderName]);
+		analyzeStack(folderNames[folderName]);
 	}
 } else {
 	print("The folder didn't contain any filenames");
 	exit;
 }
 
-function mergeStacks(foldername) {
+function analyzeStack(foldername) {
 	if(dapiFiles.length > 0) {		
 		for(file = 0; file < dapiFiles.length; file++) {
 			compositeFilename = getFilename(dapiFiles[file], foldername);
