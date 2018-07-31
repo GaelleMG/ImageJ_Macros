@@ -92,32 +92,28 @@ function analyzeStack(foldername) {
 function getColorFieldArray(filestringFields, color) {
 	if(lengthOf(filestringFields) > 0) {
 		rows = split(filestringFields, "\n"); 
-		dapiFiles = newArray(rows.length);
-		greenFiles = newArray(rows.length);
-		redFiles = newArray(rows.length);
+		colorFieldnames = newArray(rows.length);
 		for(row = 0; row < rows.length; row++){
 			columns = split(rows[row], "\t");
-			dapiFiles[row] = columns[0]; 
-			greenFiles[row] = columns[1];
-			redFiles[row] = columns[2];
+			if (color == BLUE) {
+				colorFieldnames[row] = columns[0];
+				blue = TRUE;
+			}
+			if (color == GREEN) {
+				colorFieldnames[row] = columns[1];
+				green = TRUE;
+			}
+			if (color == RED) {
+				colorFieldnames[row] = columns[2];
+				red = TRUE;
+			}
 		}
 	} else {
 		print("The fieldnames do not exist.");
 		exit;
 	}
 	
-	if(color == BLUE) {
-		blue = TRUE;
-		return dapiFiles;
-	}
-	if(color == GREEN) {
-		green = TRUE;
-		return greenFiles;
-	}
-	if(color == RED) {
-		red = TRUE;
-		return redFiles;
-	}
+	return colorFieldnames;
 }
 
 function getCompositeFilenames(blue, green, red, farred) {
