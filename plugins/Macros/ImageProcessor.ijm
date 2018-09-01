@@ -3,8 +3,6 @@ GREEN = "green";
 RED = "red";
 FARRED = "far-red"
 var blue = green = red = farred = false;
-TRUE = true;
-FALSE = false;
 zImageNumber = 0;
 compositeFilename = "";
 
@@ -22,7 +20,7 @@ compositeFilenames = getCompositeFilenames(blue, green, red, farred);
 showMessageWithCancel("Directory", "Select the PARAMETER file:");
 paramPath = runMacro("getPath.ijm");
 
-setBatchMode(FALSE);
+setBatchMode(false);
 
 folderNames = split(filestringDirectory, "\n");
 if(lengthOf(folderNames) > 0) {
@@ -97,15 +95,15 @@ function getColorFieldArray(filestringFields, color) {
 			columns = split(rows[row], "\t");
 			if (color == BLUE) {
 				colorFieldnames[row] = columns[0];
-				blue = TRUE;
+				blue = true;
 			}
 			if (color == GREEN) {
 				colorFieldnames[row] = columns[1];
-				green = TRUE;
+				green = true;
 			}
 			if (color == RED) {
 				colorFieldnames[row] = columns[2];
-				red = TRUE;
+				red = true;
 			}
 		}
 	} else {
@@ -117,7 +115,7 @@ function getColorFieldArray(filestringFields, color) {
 }
 
 function getCompositeFilenames(blue, green, red, farred) {
-	if(blue == TRUE && green == TRUE && red == TRUE) {
+	if(blue == true && green == true && red == true) {
 		compositeFilenames = newArray("_00-02_",
 						"_03-05_",
 						"_06-08_",
