@@ -9,7 +9,7 @@ compositeFilename = "";
 
 // User input
 showMessageWithCancel("Directory", "Select the DIRECTORY file:");
-filestringDirectory = runMacro("getPaths.ijm");
+experimentDirectory = runMacro("getPaths.ijm");
 
 filestringFields = File.openAsString(setColors(runMacro("getChannelsRadioButtons.ijm")));
 dapiFiles = getColorFieldArray(filestringFields, BLUE);
@@ -22,10 +22,10 @@ paramPath = runMacro("getPath.ijm");
 
 setBatchMode(false);
 
-folderNames = split(filestringDirectory, "\n");
-if(lengthOf(folderNames) > 0) {
-	for(folderName = 0; folderName < folderNames.length; folderName++) {
-		analyzeStack(folderNames[folderName]);
+conditionDirectories = split(experimentDirectory, "\n");
+if(lengthOf(conditionDirectories) > 0) {
+	for(conditionDirectory = 0; folderName < conditionDirectories.length; folderName++) {
+		analyzeStack(conditionDirectories[conditionDirectory]);
 	}
 } else {
 	print("The folder didn't contain any filenames");
@@ -34,23 +34,23 @@ if(lengthOf(folderNames) > 0) {
 
 function analyzeStack(foldername) {
 	if(dapiFiles.length > 0) {		
-		for(file = 0; file < dapiFiles.length; file++) {
-			compositeFilename = getFilename(dapiFiles[file], foldername);
+		for(field = 0; field < dapiFiles.length; field++) {
+			compositeFilename = getFilename(dapiFiles[field], foldername);
 			
 			if(lengthOf(compositeFilename) > 0) {
-				c3Name = openImageStack(file, dapiFiles, foldername, BLUE, 0);
+				c3Name = openImageStack(field, dapiFiles, foldername, BLUE, 0);
 				applyParameters(paramPath, BLUE);
 				
 				zImageNumber = nSlices();
 
-				c1Name = openImageStack(file, greenFiles, foldername, GREEN, zImageNumber);
+				c1Name = openImageStack(field, greenFiles, foldername, GREEN, zImageNumber);
 				applyParameters(paramPath, GREEN);
 				
-				c2Name = openImageStack(file, redFiles, foldername, RED, zImageNumber);
+				c2Name = openImageStack(field, redFiles, foldername, RED, zImageNumber);
 				applyParameters(paramPath, RED);
 
 				finalFilename3color = substring(compositeFilename, 0,
-					lengthOf(compositeFilename)-9) + compositeFilenames[file] + "composite_3color";
+					lengthOf(compositeFilename)-9) + compositeFilenames[field] + "composite_3color";
 
 				// merge stacks and save as merged stack as TIF files
 				run("Merge Channels...", "c1="+c1Name+" c2="+c2Name+" c3="+c3Name+" create keep");
