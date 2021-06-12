@@ -1,5 +1,4 @@
 #!/bin/bash
-# Juan Ortiz
 
 #Check if coloc exists as a directory if not creat it
 if [ ! -d 'coloc' ]; then
