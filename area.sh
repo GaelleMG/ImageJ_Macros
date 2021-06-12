@@ -1,5 +1,4 @@
 #!/bin/bash
-# Juan Ortiz
 
 # Select starting file name
 echo "Enter first few characters of file name:"
