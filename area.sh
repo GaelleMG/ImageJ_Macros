@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Select starting file name
-echo "Enter first few characters of file name:"
-read first_characters
-
 # Check if area exists as a directory if not creat it
 if [ ! -d 'area' ]; then
     mkdir area
@@ -38,26 +34,22 @@ fi
 # Run python to copy formatted data into currentdir_area.data.csv file
 echo "# Designated path
 path = 'area/data.txt'
-# Check for starting file name
-starting = '$first_characters'
 # Store everything in a list
 my_file = []
 # Open the file to read it
 with open(path, 'r') as f:
     my_file = f.read().splitlines()
-    for i in my_file:
-        # If the name in the array starts with (first_characters) write it first
-        # otherwise copy its data in a single row
-        # Need to append a comma at the end of area.txt so that it doesn't append
-        # the first number to the end
-        if i[-8:] == 'area.txt':
-            # Begin data at column letter O
-            i += ',,,,,,,,,,,,'
-        if i[:len(starting)] == starting:
-            print '\n{}'.format(i),
+    for line in range(len(my_file)):
+        try:
+            number = float(my_file[line])
+        except ValueError as e:
+            name = my_file[line]
+            number = ''
+        if number == '':
+            pass
         else:
-            print '{},'.format(i),
-# Close the file
+            print '{},{},{}'.format(number, name, name.replace('_',','))
+        # Close the file
 f.close()" > area.py
 python area.py >> $(basename "$PWD"_area_data.csv)
 
