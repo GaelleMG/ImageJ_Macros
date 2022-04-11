@@ -57,6 +57,8 @@ try:
             csvfile.close()
     except ValueError:
         print 'Already analysed!'
+    except IndexError:
+        pass
 except IOError:
     print 'No file found'" > coloc.py
 
