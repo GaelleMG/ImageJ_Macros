@@ -15,7 +15,6 @@ my_file = argv[1]
 file_name = []
 file_name.append(my_file)
 my_list = []
-need_to_print = []
 allowed = ['0','1','2','3','4','5','6','7','8','9','.']
 
 try:
