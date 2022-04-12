@@ -64,7 +64,7 @@ try:
             spamwriter.writerow(col)
             csvfile.close()
     except ValueError:
-        print 'Already analysed!'
+        pass
     except IndexError:
         pass
 except IOError:
