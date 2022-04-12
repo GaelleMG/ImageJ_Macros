@@ -48,7 +48,7 @@ try:
             spamwriter = csv.writer(csvfile)
             if len(my_list) > 5:
                 one = numbers(my_list[5])
-            if len(numbers(my_list) > 8:
+            if len(my_list) > 8:
                 two = numbers(my_list[8])
             if len(my_list) > 9:
                 three = numbers(my_list[9]) 
