@@ -45,19 +45,19 @@ try:
         with open('$filename', 'a') as csvfile:
             one, two, three, four, five, six, eight = '', '', '', '', '', '', '', ''
             spamwriter = csv.writer(csvfile)
-            if len(my_list) >= 5:
+            if len(my_list) > 4:
                 one = numbers(my_list[5])
-            if len(my_list) >= 8:
+            if len(my_list) > 7:
                 two = numbers(my_list[8])
-            if len(my_list) >= 9:
+            if len(my_list) > 8:
                 three = numbers(my_list[9]) 
-            if len(my_list) >= 12:
+            if len(my_list) > 11:
                 four = numbers(my_list[12]) 
-            if len(my_list) >= 13:
+            if len(my_list) > 12:
                 five = numbers(my_list[13])
-            if len(my_list) >= 17:
+            if len(my_list) > 16:
                 six = numbers(my_list[17])
-            if len(my_list) >= 29:
+            if len(my_list) > 28:
                 eight = numbers(my_list[29])
             col = file_name + one + two + three + four + five + six + eight
             spamwriter.writerow(col)
