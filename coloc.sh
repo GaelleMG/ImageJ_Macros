@@ -31,8 +31,8 @@ try:
 	first = first.partition(' ')[0]
         
         if first.index('='):
-	    first_selection = first.index('=')
-	    first = first[first_selection+1:]
+            first_selection = first.index('=')
+            first = first[first_selection+1:]
         
         for selected in first:
             if selected in allowed:
@@ -43,7 +43,7 @@ try:
         return my_list
     try:
         with open('$filename', 'a') as csvfile:
-            one, two, three, four, five, six, eight = '', '', '', '', '', '', '', ''
+            one, two, three, four, five, six, eight = list(''), list(''), list(''), list(''), list(''), list(''), list('')
             spamwriter = csv.writer(csvfile)
             if len(my_list) > 4:
                 one = numbers(my_list[5])
