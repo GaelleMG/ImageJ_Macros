@@ -43,7 +43,7 @@ try:
         return my_list
     try:
         with open('$filename', 'a') as csvfile:
-            one, two, three, four, five, six, eight = list(''), list(''), list(''), list(''), list(''), list(''), list('')
+            one, two, three, four, five, six, eight = list(), list(), list(), list(), list(), list(), list()
             spamwriter = csv.writer(csvfile)
             if len(my_list) > 4:
                 one = numbers(my_list[5])
